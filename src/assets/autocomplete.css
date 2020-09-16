@@ -8,7 +8,7 @@
 }
 .issues {
   list-style-type: none;
-  max-width: 600px;
+  max-width: 60%;
   margin: auto;
 }
 .issue-suggestion {
