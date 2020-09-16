@@ -11,7 +11,12 @@ export const useStateWithPromise = (
   useEffect(() => {
     (async () => {
       console.log("api called");
-      setIssues(await promise);
+      try {
+        setIssues(await promise);
+      } catch (err) {
+        setIssues([]);
+        alert("Something went wrong calling the api. Error message: " + err);
+      }
     })();
   }, []);
 
