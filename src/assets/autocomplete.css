@@ -1,0 +1,85 @@
+.issue-suggestion-active {
+  background-color: #ccc;
+  color: #000;
+  cursor: pointer;
+  padding: 5px;
+  justify-content: flex-start;
+  display: flex;
+}
+.issues {
+  list-style-type: none;
+  max-width: 600px;
+  margin: auto;
+}
+.issue-suggestion {
+  display: flex;
+  padding: 5px;
+  justify-content: flex-start;
+  background-color: #fff;
+}
+.issue-body {
+  text-align: left;
+  margin-left: 10px;
+}
+.issues li {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.avatar {
+  border: 1px solid #ddd;
+  border-radius: 100%;
+  padding: 5px;
+  width: 100px;
+  height: 100px;
+}
+.issue-title {
+  color: #000;
+  font-weight: bold;
+  font-size: 16px;
+}
+.searchbox {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  font-size: 1.2rem;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 1.5rem 2rem;
+  border-radius: 0.2rem;
+  border: none;
+  width: 60%;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 0.3rem solid transparent;
+  transition: all 0.3s;
+}
+.clear-button {
+  width: 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.issue-viewer {
+  display: flex;
+  padding: 5px;
+  justify-content: flex-start;
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 60%;
+  margin: auto;
+  border-radius: 0.2rem;
+}
+.labels-display {
+  display: flex;
+  justify-content: flex-start;
+}
+.label {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 4px;
+  border-radius: 5px;
+  margin: 5px;
+}
+body {
+  background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+}
+pre {
+  white-space: pre-wrap;
+}
