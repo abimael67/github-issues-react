@@ -1,8 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { SearchBox } from "./searchBox";
-import { mount } from "enzyme";
-import { configure as configureEnzyme } from "enzyme";
+import { mount, configure as configureEnzyme } from "enzyme";
 import EnzymeReact16Adapter from "enzyme-adapter-react-16";
 import { getFakeIssues } from "../test_utils/fakeApi";
 
