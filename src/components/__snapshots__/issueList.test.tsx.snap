@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IssueList component Component renders correctly 1`] = `
+<ul
+  className="issues"
+>
+  <li
+    data-index={0}
+    onClick={[Function]}
+    onMouseOver={[Function]}
+  >
+    <div
+      className="issue-suggestion-active"
+    >
+      <img
+        alt="avatar"
+        className="avatar"
+        src="dummy_url"
+      />
+      <div
+        className="issue-body"
+      >
+        <div
+          className="issue-title"
+        >
+          Issue number 1
+        </div>
+        <br />
+        <div>
+          by user1
+        </div>
+        <div>
+           on 2020-09-17
+        </div>
+      </div>
+    </div>
+  </li>
+  <li
+    data-index={1}
+    onClick={[Function]}
+    onMouseOver={[Function]}
+  >
+    <div
+      className="issue-suggestion"
+    >
+      <img
+        alt="avatar"
+        className="avatar"
+        src="dummy_url"
+      />
+      <div
+        className="issue-body"
+      >
+        <div
+          className="issue-title"
+        >
+          Issue number 2
+        </div>
+        <br />
+        <div>
+          by user2
+        </div>
+        <div>
+           on 2020-09-17
+        </div>
+      </div>
+    </div>
+  </li>
+  <li
+    data-index={2}
+    onClick={[Function]}
+    onMouseOver={[Function]}
+  >
+    <div
+      className="issue-suggestion"
+    >
+      <img
+        alt="avatar"
+        className="avatar"
+        src="dummy_url"
+      />
+      <div
+        className="issue-body"
+      >
+        <div
+          className="issue-title"
+        >
+          Issue number 3
+        </div>
+        <br />
+        <div>
+          by user3
+        </div>
+        <div>
+           on 2020-09-17
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+`;

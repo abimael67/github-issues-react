@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Searchbox component Component renders correctly 1`] = `
+<div
+  className="searchbox"
+>
+  <input
+    className="searchbox"
+    onChange={[Function]}
+    placeholder="Search an issue"
+    type="text"
+  />
+  <button
+    className="clear-button"
+    onClick={[Function]}
+  >
+    CLEAR
+  </button>
+</div>
+`;

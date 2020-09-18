@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IssueSuggestion component Component renders correctly 1`] = `
+<div
+  className="issue-suggestion"
+>
+  <img
+    alt="avatar"
+    className="avatar"
+    src="dummy_url"
+  />
+  <div
+    className="issue-body"
+  >
+    <div
+      className="issue-title"
+    >
+      Issue number 1
+    </div>
+    <br />
+    <div>
+      by user1
+    </div>
+    <div>
+       on 2020-09-17
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IssueViewer component Component renders correctly 1`] = `
+<div
+  className="issue-viewer"
+>
+  <img
+    alt="avatar"
+    className="avatar"
+    src="dummy_url"
+  />
+  <div
+    className="issue-body"
+  >
+    <div>
+      by user1
+    </div>
+    <div>
+       on 2020-09-17
+    </div>
+    <div
+      className="issue-title"
+    >
+      Issue number 1
+    </div>
+    <pre>
+      test body
+    </pre>
+    <div
+      className="labels-display"
+    >
+      <div
+        className="label"
+        style={
+          Object {
+            "backgroundColor": "#ccc",
+          }
+        }
+        title=""
+      >
+        Label 1
+      </div>
+    </div>
+  </div>
+</div>
+`;
