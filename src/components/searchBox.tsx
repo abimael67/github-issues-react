@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import "../assets/autocomplete.css";
 interface Props {
   filterFunc: (criteria: string) => void;
@@ -6,9 +6,15 @@ interface Props {
 }
 /**Displays a searchbox along with a clear button */
 export const SearchBox: React.FC<Props> = ({ filterFunc, reference }) => {
+  const value = useRef<string | null>(null);
+  //cached and debounced filter handler to improve performance
   const onChangeHandler = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      filterFunc(event.target.value);
+      value.current = event.target.value;
+      let temp = value.current;
+      setTimeout(() => {
+        if (temp === value.current) filterFunc(value.current || "");
+      }, 500);
     },
     [filterFunc]
   );
