@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { IssueSuggestion } from "./issueSuggestion";
-import { getFakeIssues } from "../test_utils/fakeApi";
+import { IssueSuggestion } from "../issueSuggestion";
+import { getFakeIssues } from "../../test_utils/fakeApi";
 
 describe("IssueSuggestion component", () => {
   it("Component renders correctly", () => {

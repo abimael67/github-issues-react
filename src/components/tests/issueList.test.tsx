@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { IssueList } from "./issueList";
-import { getFakeIssues } from "../test_utils/fakeApi";
+import { IssueList } from "../issueList";
+import { getFakeIssues } from "../../test_utils/fakeApi";
 
 describe("IssueList component", () => {
   it("Component renders correctly", () => {

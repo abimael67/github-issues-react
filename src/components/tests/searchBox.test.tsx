@@ -1,9 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { SearchBox } from "./searchBox";
+import { SearchBox } from "../searchBox";
 import { mount, configure as configureEnzyme } from "enzyme";
 import EnzymeReact16Adapter from "enzyme-adapter-react-16";
-import { getFakeIssues } from "../test_utils/fakeApi";
+import { getFakeIssues } from "../../test_utils/fakeApi";
 
 configureEnzyme({ adapter: new EnzymeReact16Adapter() });
 

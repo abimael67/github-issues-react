@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { IssueViewer } from "./issueViewer";
-import { getFakeIssues } from "../test_utils/fakeApi";
+import { IssueViewer } from "../issueViewer";
+import { getFakeIssues } from "../../test_utils/fakeApi";
 
 describe("IssueViewer component", () => {
   it("Component renders correctly", () => {

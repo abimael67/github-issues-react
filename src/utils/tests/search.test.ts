@@ -1,5 +1,5 @@
-import { getFakeIssues } from "../test_utils/fakeApi";
-import { searchByTitle } from "./search";
+import { getFakeIssues } from "../../test_utils/fakeApi";
+import { searchByTitle } from "../search";
 
 const _fakeIssues = getFakeIssues();
 describe("Search by title function", () => {
