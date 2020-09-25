@@ -1,44 +1,48 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { getIssues } from "./api/github";
 import { IssueList } from "./components/issueList";
 import { useFetchIssues } from "./hooks/useFetchIssues";
 import { SearchBox } from "./components/searchBox";
 import { Issue } from "./types/Issue";
-import { searchByTitle } from "./utils/search";
 import { IssueViewer } from "./components/issueViewer";
+import { IssuesContext, IssueContext } from "./context/issue";
 
 function App() {
   //created a custom hook to handle the async api call
   //since github doesn't allow us to search under a repo by issue title,
   //I am storing the first repo response in a local state just for demo.
-  const { issues } = useFetchIssues(getIssues());
-  const [filteredIssues, setFilteredIssues] = useState([] as Issue[]);
-  const [selectedIssue, setSelectedIssue] = useState(null as Issue | null);
-  const searchBoxRef = useRef({} as HTMLInputElement);
-  /**Handle the searchbox input changes to filter the matching issues. */
-  const filterIssues = (criteria: string) => {
-    setSelectedIssue(null);
-    if (!criteria) {
-      searchBoxRef.current.value = "";
-      setFilteredIssues([]);
-    } else setFilteredIssues(searchByTitle(issues, criteria));
-  };
-  /** Set the received Issue as selected.*/
-  const selectIssue = (issue: Issue) => {
-    if (!issue) return;
-    setSelectedIssue(issue);
-    searchBoxRef.current.value = issue.title;
-    setFilteredIssues([]);
-  };
+  const { issues } = useFetchIssues(useCallback(getIssues, []));
+  const [issueContext, setIssueContext] = useState({} as IssueContext);
+
+  useEffect(() => {
+    setIssueContext((i) => ({ ...i, allIssues: issues }));
+  }, [issues.length]);
 
   return (
     <div className="App">
-      <SearchBox filterFunc={filterIssues} reference={searchBoxRef}></SearchBox>
-      <IssueList
-        issueList={filteredIssues}
-        selectIssue={selectIssue}
-      ></IssueList>
-      {selectedIssue && <IssueViewer issue={selectedIssue}></IssueViewer>}
+      <IssuesContext.Provider value={issueContext}>
+        <SearchBox
+          setFilteredIssues={(filteredIssues: Issue[]) =>
+            setIssueContext(
+              Object.assign({}, issueContext, {
+                filteredIssues,
+                selectedIssue: null,
+              })
+            )
+          }
+        ></SearchBox>
+        <IssueList
+          setSelectedIssue={(selectedIssue: Issue) =>
+            setIssueContext(
+              Object.assign({}, issueContext, {
+                selectedIssue,
+                filteredIssues: [],
+              })
+            )
+          }
+        ></IssueList>
+        {issueContext.selectedIssue && <IssueViewer />}
+      </IssuesContext.Provider>
     </div>
   );
 }

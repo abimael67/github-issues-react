@@ -1,11 +1,32 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useContext, useEffect } from "react";
 import "../assets/autocomplete.css";
+import { Issue } from "../types/Issue";
+import { searchByTitle } from "../utils/search";
+import { IssuesContext } from "../context/issue";
 interface Props {
-  filterFunc: (criteria: string) => void;
-  reference: any;
+  setFilteredIssues: (filteredIssues: Issue[]) => void;
 }
 /**Displays a searchbox along with a clear button */
-export const SearchBox: React.FC<Props> = ({ filterFunc, reference }) => {
+export const SearchBox: React.FC<Props> = ({ setFilteredIssues }) => {
+  const reference = useRef<HTMLInputElement>(null);
+  const issuesContext = useContext(IssuesContext);
+
+  const filterIssues = useCallback(
+    (criteria: string) => {
+      if (!criteria) {
+        if (reference.current) reference.current.value = "";
+        setFilteredIssues([]);
+      } else
+        setFilteredIssues(searchByTitle(issuesContext.allIssues, criteria));
+    },
+    [issuesContext.allIssues, setFilteredIssues]
+  );
+
+  useEffect(() => {
+    if (reference.current)
+      reference.current.value = issuesContext?.selectedIssue?.title ?? "";
+  }, [issuesContext]);
+
   const value = useRef<string | null>(null);
   //cached and debounced filter handler to improve performance
   const onChangeHandler = useCallback(
@@ -13,10 +34,10 @@ export const SearchBox: React.FC<Props> = ({ filterFunc, reference }) => {
       value.current = event.target.value;
       let temp = value.current;
       setTimeout(() => {
-        if (temp === value.current) filterFunc(value.current || "");
+        if (temp === value.current) filterIssues(value.current || "");
       }, 500);
     },
-    [filterFunc]
+    [filterIssues]
   );
 
   return (
@@ -28,7 +49,7 @@ export const SearchBox: React.FC<Props> = ({ filterFunc, reference }) => {
         placeholder="Search an issue"
         ref={reference}
       ></input>
-      <button onClick={() => filterFunc("")} className="clear-button">
+      <button onClick={() => filterIssues("")} className="clear-button">
         CLEAR
       </button>
     </div>

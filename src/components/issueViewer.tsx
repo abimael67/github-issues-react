@@ -1,10 +1,10 @@
-import React from "react";
-import { Issue, Label } from "../types/Issue";
-interface Props {
-  issue: Issue | null;
-}
+import React, { useContext } from "react";
+import { Label } from "../types/Issue";
+import { IssuesContext } from "../context/issue";
+
 /**Displays issues details */
-export const IssueViewer: React.FC<Props> = ({ issue }) => {
+export const IssueViewer: React.FC = () => {
+  const issue = useContext(IssuesContext).selectedIssue;
   return (
     <>
       <div className={"issue-viewer"}>

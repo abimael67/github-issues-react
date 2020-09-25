@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Issue } from "../types/Issue";
 import "../assets/autocomplete.css";
 import { IssueSuggestion } from "./issueSuggestion";
-/** Displays an issue suggestion list */
-export const IssueList: React.FC<{
-  issueList: Array<Issue>;
-  selectIssue: (issue: Issue) => void;
-}> = ({ issueList, selectIssue }) => {
-  const [selectedIssueIndex, setSelectedIssueIndex] = useState<number>(0);
+import { IssuesContext } from "../context/issue";
 
+interface Props {
+  setSelectedIssue: (selectedIssue: Issue) => void;
+}
+/** Displays an issue suggestion list */
+export const IssueList: React.FC<Props> = ({ setSelectedIssue }) => {
+  const [selectedIssueIndex, setSelectedIssueIndex] = useState<number>(0);
+  const issueContext = useContext(IssuesContext);
   const setSelectedIssueIndexWithMouse = (
     e: React.MouseEvent<HTMLLIElement, MouseEvent>
   ) => {
@@ -16,8 +18,14 @@ export const IssueList: React.FC<{
     setSelectedIssueIndex(Number(e.currentTarget.dataset.index));
   };
 
+  const selectIssue = (issue: Issue) => {
+    if (!issue) return;
+    setSelectedIssue(issue);
+  };
+
   const retrieveIssue = () => {
-    if (issueList.length > 0) selectIssue(issueList[selectedIssueIndex]);
+    if (issueContext.filteredIssues.length > 0)
+      selectIssue(issueContext.filteredIssues[selectedIssueIndex]);
   };
 
   useEffect(() => {
@@ -38,7 +46,7 @@ export const IssueList: React.FC<{
         break;
       case "ArrowDown":
         setSelectedIssueIndex(
-          selectedIssueIndex < issueList.length - 1
+          selectedIssueIndex < issueContext.filteredIssues.length - 1
             ? selectedIssueIndex + 1
             : selectedIssueIndex
         );
@@ -50,8 +58,8 @@ export const IssueList: React.FC<{
   };
   return (
     <ul className="issues">
-      {issueList &&
-        issueList.map((issue: Issue, index: number) => (
+      {issueContext.filteredIssues &&
+        issueContext.filteredIssues.map((issue: Issue, index: number) => (
           <li
             key={index}
             onMouseOver={setSelectedIssueIndexWithMouse}
