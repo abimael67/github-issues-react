@@ -23,11 +23,11 @@ const reducer = (state: State, action: Action): State => {
   }
 };
 
-/**Custom hook to handle async API calls and set the result
+/** Custom hook to handle async API calls and set the result
  * to a local state. Returns the loaded local state.
  */
 export const useFetchIssues = (
-  promise: () => Promise<Array<Issue>>
+  promise: () => Promise<Array<Issue>>,
 ): { issues: Issue[] } => {
   const [{ issues, isLoading, error }, dispatch] = useReducer(reducer, {
     isLoading: null,
@@ -36,11 +36,11 @@ export const useFetchIssues = (
     (async () => {
       dispatch({ type: "request" });
       try {
-        let result = await promise();
+        const result = await promise();
         dispatch({ type: "success", issues: result });
       } catch (err) {
         dispatch({ type: "failure", error: err });
-        alert("Something went wrong calling the api. Error message: " + err);
+        alert(`Something went wrong calling the api. Error message: ${err}`);
       }
     })();
   }, [promise]);
